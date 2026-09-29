@@ -1,0 +1,77 @@
+﻿@model List<Project_AutoHouse.Models.CarAd>
+@{
+    ViewData["Title"] = "Сравнение на автомобили";
+}
+
+<div class="container mt-5">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="fw-bold">Сравнение на избраните обяви</h2>
+        <a href="/Home/Index" class="btn btn-outline-secondary">Назад към списъка</a>
+    </div>
+
+    @if (Model == null || Model.Count < 2)
+    {
+        <div class="alert alert-warning">Трябва да изберете поне два автомобила, за да ги сравните.</div>
+    }
+    else
+    {
+        <div class="table-responsive shadow-sm rounded">
+            <table class="table table-bordered bg-white text-center align-middle">
+                <thead class="table-light">
+                    <tr>
+                        <th style="width: 200px;">Характеристика</th>
+                        @foreach (var car in Model)
+                        {
+                            <th>
+                                @{
+                                    var firstImg = car.ImageUrl?.Split('|')[0] ?? "/images/no-image.jpg";
+                                }
+                                <img src="@firstImg" style="width: 100%; height: 150px; object-fit: cover; border-radius: 8px;" class="mb-2" />
+                                <div class="fw-bold">@car.Make @car.Model</div>
+                            </th>
+                        }
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="fw-bold bg-light text-start">Цена</td>
+                        @foreach (var car in Model)
+                        {
+                            <td class="text-primary fw-bold" style="font-size: 1.2rem;">@car.Price.ToString("N0") лв.</td>
+                        }
+                    </tr>
+                    <tr>
+                        <td class="fw-bold bg-light text-start">Година</td>
+                        @foreach (var car in Model)
+                        {
+                            <td>@car.Year г.</td>
+                        }
+                    </tr>
+                    <tr>
+                        <td class="fw-bold bg-light text-start">Град</td>
+                        @foreach (var car in Model)
+                        {
+                            <td>@car.City</td>
+                        }
+                    </tr>
+                    <tr>
+                        <td class="fw-bold bg-light text-start">Екстри</td>
+                        @foreach (var car in Model)
+                        {
+                            <td style="font-size: 0.85rem;" class="text-muted">@car.Extras</td>
+                        }
+                    </tr>
+                    <tr>
+                        <td class="fw-bold bg-light text-start">Действие</td>
+                        @foreach (var car in Model)
+                        {
+                            <td>
+                                <a href="/Home/Details/@car.Id" class="btn btn-sm btn-primary">Виж обявата</a>
+                            </td>
+                        }
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    }
+</div>

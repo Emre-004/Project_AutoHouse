@@ -1,0 +1,68 @@
+﻿@{
+    ViewData["Title"] = "Вход";
+}
+
+<style>
+    .auth-container {
+        max-width: 400px;
+        margin: 50px auto;
+        background: white;
+        padding: 40px 30px;
+        border-radius: 8px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        border: 1px solid #f0f0f0;
+    }
+
+    .form-control {
+        background-color: #f8f9fa;
+        border: 1px solid #e0e0e0;
+        padding: 12px;
+        border-radius: 6px;
+        margin-bottom: 20px;
+    }
+
+    .btn-auth {
+        background-color: #2b5fe7;
+        color: white;
+        font-weight: bold;
+        padding: 12px;
+        border-radius: 6px;
+        width: 100%;
+        border: none;
+    }
+
+        .btn-auth:hover {
+            background-color: #1e4ac4;
+        }
+
+    .auth-link {
+        color: #2b5fe7;
+        text-decoration: none;
+        font-weight: 600;
+    }
+</style>
+
+<div class="container">
+    <div class="auth-container">
+        <h2 class="text-center mb-4" style="font-weight: 800; color: #111;">Вход</h2>
+        @if (ViewBag.ErrorMessage != null)
+        {
+            <div style="background-color: #f8d7da; color: #721c24; padding: 10px; border-radius: 6px; margin-bottom: 20px; text-align: center; font-weight: 600; font-size: 14px; border: 1px solid #f5c6cb;">
+                @ViewBag.ErrorMessage
+            </div>
+        }
+        <form method="post" action="/Home/LoginPost" autocomplete="off">
+            <label style="font-weight: 600; font-size: 14px;">Имейл адрес</label>
+            <input type="email" name="Email" class="form-control" placeholder="name@example.com" required autocomplete="off" />
+
+            <label style="font-weight: 600; font-size: 14px;">Парола</label>
+            <input type="password" name="Password" class="form-control" placeholder="••••••••" required autocomplete="new-password" />
+
+            <button type="submit" class="btn-auth mt-2">Влез в профила</button>
+        </form>
+
+        <div class="text-center mt-4" style="font-size: 14px; color: #666;">
+            Нямаш профил? <a href="/Home/Register" class="auth-link">Регистрирай се тук</a>
+        </div>
+    </div>
+</div>

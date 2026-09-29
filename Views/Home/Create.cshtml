@@ -1,0 +1,182 @@
+﻿@model Project_AutoHouse.Models.CarAd
+@{
+    ViewData["Title"] = "Добави Обява";
+}
+
+<div class="container mt-4" style="max-width: 600px;">
+    <div style="background: white; padding: 30px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05);">
+        <h2 class="mb-4" style="font-weight: 700; color: #1a1a1a;">Публикувай обява</h2>
+
+        <form method="post" action="/Home/Create" enctype="multipart/form-data">
+            <div class="mb-3">
+                
+                <label for="Make" class="form-label fw-bold">Марка</label>
+                <select class="form-select" id="Make" name="Make" required>
+                    <option value="" disabled selected>Изберете марка...</option>
+                    <option value="Audi">Audi</option>
+                    <option value="BMW">BMW</option>
+                    <option value="Mercedes-Benz">Mercedes-Benz</option>
+                    <option value="VW">VW</option>
+                    <option value="Toyota">Toyota</option>
+                    <option value="Honda">Honda</option>
+                    <option value="Ford">Ford</option>
+                    <option value="Nissan">Nissan</option>
+                    <option value="Peugeot">Peugeot</option>
+                    <option value="Renault">Renault</option>
+                    <option value="Volvo">Volvo</option>
+                    <option value="Kia">Kia</option>
+                    <option value="Hyundai">Hyundai</option>
+                    <option value="Mazda">Mazda</option>
+                    <option value="Subaru">Subaru</option>
+                    <option value="Chevrolet">Chevrolet</option>
+                    <option value="Fiat">Fiat</option>
+                    <option value="Jeep">Jeep</option>
+                    <option value="Land Rover">Land Rover</option>
+                    <option value="Jaguar">Jaguar</option>
+                    <option value="Mitsubishi">Mitsubishi</option>
+                    <option value="Suzuki">Suzuki</option>
+                    <option value="Dacia">Dacia</option>
+                    <option value="Alfa Romeo">Alfa Romeo</option>
+                    <option value="Seat">Seat</option>
+                    <option value="Skoda">Skoda</option>
+                    <option value="Mini">Mini</option>
+                    <option value="Tesla">Tesla</option>
+                    <option value="Porsche">Porsche</option>
+                    <option value="Lexus">Lexus</option>
+                </select>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label" style="font-weight: 600;">Модел</label>
+                <input type="text" name="Model" class="form-control" required placeholder="напр. A6" />
+            </div>
+            <div class="mb-3">
+                <label class="form-label fw-bold">Град</label>
+                <select name="City" class="form-select">
+                    <option value="София">София</option>
+                    <option value="Пловдив">Пловдив</option>
+                    <option value="Варна">Варна</option>
+                    <option value="Бургас">Бургас</option>
+                    <option value="Благоевград">Благоевград</option>
+                    <option value="Велико Търново">Велико Търново</option>
+                    <option value="Видин">Видин</option>
+                    <option value="Враца">Враца</option>
+                    <option value="Габрово">Габрово</option>
+                    <option value="Добрич">Добрич</option>
+                    <option value="Кърджали">Кърджали</option>
+                    <option value="Кюстендил">Кюстендил</option>
+                    <option value="Ловеч">Ловеч</option>
+                    <option value="Монтана">Монтана</option>
+                    <option value="Пазарджик">Пазарджик</option>
+                    <option value="Перник">Перник</option>
+                    <option value="Плевен">Плевен</option>
+                    <option value="Разград">Разград</option>
+                    <option value="Русе">Русе</option>
+                    <option value="Силистра">Силистра</option>
+                    <option value="Сливен">Сливен</option>
+                    <option value="Смолян">Смолян</option>
+                    <option value="Стара Загора">Стара Загора</option>
+                    <option value="Търговище">Търговище</option>
+                    <option value="Хасково">Хасково</option>
+                    <option value="Шумен">Шумен</option>
+                    <option value="Ямбол">Ямбол</option>
+                    <option value="Дупница">Дупница</option>
+                    <option value="Казанлък">Казанлък</option>
+                    <option value="Асеновград">Асеновград</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label class="form-label fw-bold">Телефон за връзка</label>
+                <input type="tel" name="PhoneNumber" class="form-control" placeholder="напр. 0888 123 456" required />
+            </div>
+            <div class="mb-3">
+                <label class="form-label" style="font-weight: 600;">Година на производство</label>
+                <input type="number" name="Year" class="form-control" required min="1990" max="2026" />
+            </div>
+            <div class="row mb-3">
+                <div class="col-md-4">
+                    <label class="form-label fw-bold">Двигател</label>
+                    <select name="FuelType" class="form-select" required>
+                        <option value="Бензин">Бензин</option>
+                        <option value="Дизел">Дизел</option>
+                        <option value="Газ/Бензин">Газ/Бензин</option>
+                        <option value="Хибрид">Хибрид</option>
+                        <option value="Електрически">Електрически</option>
+                    </select>
+                </div>
+                <div class="col-md-4">
+                    <label class="form-label fw-bold">Скоростна кутия</label>
+                    <select name="Transmission" class="form-select" required>
+                        <option value="Ръчни">Ръчни</option>
+                        <option value="Автоматични">Автоматични</option>
+                    </select>
+                </div>
+                <div class="col-md-4">
+                    <label class="form-label fw-bold">Мощност (к.с.)</label>
+                    <input type="number" name="Horsepower" class="form-control" placeholder="напр. 150" required />
+                </div>
+            </div>
+            <div class="mb-3">
+                <label class="form-label" style="font-weight: 600;">Цена (лв.)</label>
+                <input type="number" name="Price" class="form-control" required />
+            </div>
+            <div class="mb-3">
+                <label for="Description" class="form-label fw-bold">Описание, особености и екстри</label>
+                <textarea class="form-control" id="Description" name="Description" rows="5" placeholder="Опишете състоянието на колата, сменени части, наличие на климатроник, лети джанти и т.н..." required></textarea>
+            </div>
+            <div class="mb-4">
+                <label class="form-label" style="font-weight: 600;">Качи снимки на автомобила (до 10 бр.)</label>
+                <!-- Добавено е multiple и името е CarImages -->
+                <input type="file" name="CarImages" class="form-control" accept="image/*" multiple />
+                <small class="text-muted">Задръжте Ctrl (или Command), за да изберете няколко снимки едновременно.</small>
+            </div>
+            <label class="form-label fw-bold mt-3">Особености и Екстри</label>
+            <div class="row mb-4 p-3 border rounded bg-light">
+                <!-- КОМФОРТ -->
+                <div class="col-md-4">
+                    <strong class="text-primary mb-2 d-block">Комфорт</strong>
+                    <div class="form-check"><input class="form-check-input" type="checkbox" name="SelectedExtras" value="Климатроник" id="c1"><label class="form-check-label" for="c1">Климатроник</label></div>
+                    <div class="form-check"><input class="form-check-input" type="checkbox" name="SelectedExtras" value="Кожен салон" id="c2"><label class="form-check-label" for="c2">Кожен салон</label></div>
+                    <div class="form-check"><input class="form-check-input" type="checkbox" name="SelectedExtras" value="Ел. стъкла" id="c3"><label class="form-check-label" for="c3">Ел. стъкла</label></div>
+                    <div class="form-check"><input class="form-check-input" type="checkbox" name="SelectedExtras" value="Ел. огледала" id="c4"><label class="form-check-label" for="c4">Ел. огледала</label></div>
+                    <div class="form-check"><input class="form-check-input" type="checkbox" name="SelectedExtras" value="Ел. седалки" id="c5"><label class="form-check-label" for="c5">Ел. седалки</label></div>
+                    <div class="form-check"><input class="form-check-input" type="checkbox" name="SelectedExtras" value="Подгряване на седалки" id="c6"><label class="form-check-label" for="c6">Подгряване на седалки</label></div>
+                    <div class="form-check"><input class="form-check-input" type="checkbox" name="SelectedExtras" value="Стерео уредба" id="c7"><label class="form-check-label" for="c7">Стерео уредба</label></div>
+                    <div class="form-check"><input class="form-check-input" type="checkbox" name="SelectedExtras" value="Алуминиеви джанти" id="c8"><label class="form-check-label" for="c8">Алуминиеви джанти</label></div>
+                    <div class="form-check"><input class="form-check-input" type="checkbox" name="SelectedExtras" value="DVD/TV" id="c9"><label class="form-check-label" for="c9">DVD/TV</label></div>
+                    <div class="form-check"><input class="form-check-input" type="checkbox" name="SelectedExtras" value="Мултифункционален волан" id="c10"><label class="form-check-label" for="c10">Мултифункционален волан</label></div>
+                </div>
+
+                <!-- СИГУРНОСТ -->
+                <div class="col-md-4">
+                    <strong class="text-primary mb-2 d-block">Сигурност</strong>
+                    <div class="form-check"><input class="form-check-input" type="checkbox" name="SelectedExtras" value="4x4" id="s1"><label class="form-check-label" for="s1">4x4</label></div>
+                    <div class="form-check"><input class="form-check-input" type="checkbox" name="SelectedExtras" value="ABS" id="s2"><label class="form-check-label" for="s2">ABS</label></div>
+                    <div class="form-check"><input class="form-check-input" type="checkbox" name="SelectedExtras" value="ESP" id="s3"><label class="form-check-label" for="s3">ESP</label></div>
+                    <div class="form-check"><input class="form-check-input" type="checkbox" name="SelectedExtras" value="Airbag" id="s4"><label class="form-check-label" for="s4">Airbag</label></div>
+                    <div class="form-check"><input class="form-check-input" type="checkbox" name="SelectedExtras" value="Ксенонови фарове" id="s5"><label class="form-check-label" for="s5">Ксенонови фарове</label></div>
+                    <div class="form-check"><input class="form-check-input" type="checkbox" name="SelectedExtras" value="ASR/Тракшън контрол" id="s6"><label class="form-check-label" for="s6">ASR/Тракшън контрол</label></div>
+                    <div class="form-check"><input class="form-check-input" type="checkbox" name="SelectedExtras" value="Парктроник" id="s7"><label class="form-check-label" for="s7">Парктроник</label></div>
+                    <div class="form-check"><input class="form-check-input" type="checkbox" name="SelectedExtras" value="Имобилайзер" id="s8"><label class="form-check-label" for="s8">Имобилайзер</label></div>
+                    <div class="form-check"><input class="form-check-input" type="checkbox" name="SelectedExtras" value="Центр. заключване" id="s9"><label class="form-check-label" for="s9">Центр. заключване</label></div>
+                    <div class="form-check"><input class="form-check-input" type="checkbox" name="SelectedExtras" value="Застраховка" id="s10"><label class="form-check-label" for="s10">Застраховка</label></div>
+                    <div class="form-check"><input class="form-check-input" type="checkbox" name="SelectedExtras" value="Старт-Стоп система" id="s11"><label class="form-check-label" for="s11">Старт-Стоп система</label></div>
+                </div>
+
+                <!-- ДРУГО -->
+                <div class="col-md-4">
+                    <strong class="text-primary mb-2 d-block">Друго</strong>
+                    <div class="form-check"><input class="form-check-input" type="checkbox" name="SelectedExtras" value="Типтроник/Мултитроник" id="o1"><label class="form-check-label" for="o1">Типтроник/Мултитроник</label></div>
+                    <div class="form-check"><input class="form-check-input" type="checkbox" name="SelectedExtras" value="Автопилот" id="o2"><label class="form-check-label" for="o2">Автопилот</label></div>
+                    <div class="form-check"><input class="form-check-input" type="checkbox" name="SelectedExtras" value="Серво управление" id="o3"><label class="form-check-label" for="o3">Серво управление</label></div>
+                    <div class="form-check"><input class="form-check-input" type="checkbox" name="SelectedExtras" value="Бордови компютър" id="o4"><label class="form-check-label" for="o4">Бордови компютър</label></div>
+                    <div class="form-check"><input class="form-check-input" type="checkbox" name="SelectedExtras" value="Сервизна книжка" id="o5"><label class="form-check-label" for="o5">Сервизна книжка</label></div>
+                    <div class="form-check"><input class="form-check-input" type="checkbox" name="SelectedExtras" value="Навигационна система" id="o6"><label class="form-check-label" for="o6">Навигационна система</label></div>
+                </div>
+            </div>
+
+            <button type="submit" class="btn w-100" style="background-color: #2b5fe7; color: white; font-weight: bold; padding: 12px;">Публикувай</button>
+        </form>
+    </div>
+</div>
+   

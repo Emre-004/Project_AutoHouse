@@ -1,0 +1,282 @@
+﻿@model List<Project_AutoHouse.Models.CarAd>
+@{
+    ViewData["Title"] = "Начало";
+}
+
+<style>
+    /* Панел за търсене */
+    .search-panel {
+        background-color: white;
+        border-radius: 12px;
+        padding: 25px;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.03);
+        margin-bottom: 40px;
+        border: 1px solid #f0f0f0;
+    }
+
+    .form-select {
+        background-color: #fdfdfd;
+        border: 1px solid #e0e0e0;
+        border-radius: 8px;
+        height: 45px;
+        color: #555;
+    }
+
+    .btn-search {
+        background-color: #2b5fe7;
+        color: white;
+        font-weight: 600;
+        border-radius: 8px;
+        padding: 10px 35px;
+    }
+
+    /* Карти за обявите */
+    .car-card {
+        background-color: white;
+        border-radius: 12px;
+        overflow: hidden;
+        border: 1px solid #f0f0f0;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .btn-delete {
+        background-color: #dc3545;
+        color: white;
+        border: none;
+        padding: 5px 15px;
+        border-radius: 5px;
+        font-size: 14px;
+        cursor: pointer;
+    }
+
+        .btn-delete:hover {
+            background-color: #c82333;
+        }
+</style>
+<form id="compareForm" method="get" action="/Home/Compare" class="d-none"></form>
+
+<div class="sticky-top bg-white p-3 shadow-sm mb-4 d-flex justify-content-between align-items-center" style="z-index: 999; top: 60px; border-radius: 10px;">
+    <span class="fw-bold text-muted">Избери коли за сравнение:</span>
+    <button type="submit" form="compareForm" class="btn btn-warning fw-bold">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left-right me-2" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M1 11.5a.5.5 0 0 0 .5.5h11.793l-3.147 3.146a.5.5 0 0 0 .708.708l4-4a.5.5 0 0 0 0-.708l-4-4a.5.5 0 0 0-.708.708L13.293 11H1.5a.5.5 0 0 0-.5.5m14-7a.5.5 0 0 1-.5.5H2.707l3.147 3.146a.5.5 0 1 1-.708.708l-4-4a.5.5 0 0 1 0-.708l4-4a.5.5 0 1 1 .708.708L2.707 4H14.5a.5.5 0 0 1 .5.5" />
+        </svg>
+        Сравни избраните
+    </button>
+</div>
+<form id="searchForm" method="get" action="/Home/Index" class="row g-2 mb-5 align-items-end" style="background: #f8f9fa; padding: 20px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.05);">
+    <div class="col-md-2">
+        <label class="form-label fw-bold" style="font-size: 14px;">Марка</label>
+        @{
+            var selectedMake = Context.Request.Query["searchMake"].ToString();
+        }
+        <select name="searchMake" class="form-select">
+            <option value="">Всички марки</option>
+            <option value="Audi" selected="@(selectedMake == "Audi")">Audi</option>
+            <option value="BMW" selected="@(selectedMake == "BMW")">BMW</option>
+            <option value="Mercedes-Benz" selected="@(selectedMake == "Mercedes-Benz")">Mercedes-Benz</option>
+            <option value="VW" selected="@(selectedMake == "VW")">VW</option>
+            <option value="Toyota" selected="@(selectedMake == "Toyota")">Toyota</option>
+            <option value="Honda" selected="@(selectedMake == "Honda")">Honda</option>
+            <option value="Ford" selected="@(selectedMake == "Ford")">Ford</option>
+            <option value="Nissan" selected="@(selectedMake == "Nissan")">Nissan</option>
+            <option value="Peugeot" selected="@(selectedMake == "Peugeot")">Peugeot</option>
+            <option value="Renault" selected="@(selectedMake == "Renault")">Renault</option>
+            <option value="Volvo" selected="@(selectedMake == "Volvo")">Volvo</option>
+            <option value="Kia" selected="@(selectedMake == "Kia")">Kia</option>
+            <option value="Hyundai" selected="@(selectedMake == "Hyundai")">Hyundai</option>
+            <option value="Mazda" selected="@(selectedMake == "Mazda")">Mazda</option>
+            <option value="Subaru" selected="@(selectedMake == "Subaru")">Subaru</option>
+            <option value="Chevrolet" selected="@(selectedMake == "Chevrolet")">Chevrolet</option>
+            <option value="Fiat" selected="@(selectedMake == "Fiat")">Fiat</option>
+            <option value="Jeep" selected="@(selectedMake == "Jeep")">Jeep</option>
+            <option value="Land Rover" selected="@(selectedMake == "Land Rover")">Land Rover</option>
+            <option value="Jaguar" selected="@(selectedMake == "Jaguar")">Jaguar</option>
+            <option value="Mitsubishi" selected="@(selectedMake == "Mitsubishi")">Mitsubishi</option>
+            <option value="Suzuki" selected="@(selectedMake == "Suzuki")">Suzuki</option>
+            <option value="Dacia" selected="@(selectedMake == "Dacia")">Dacia</option>
+            <option value="Alfa Romeo" selected="@(selectedMake == "Alfa Romeo")">Alfa Romeo</option>
+            <option value="Seat" selected="@(selectedMake == "Seat")">Seat</option>
+            <option value="Skoda" selected="@(selectedMake == "Skoda")">Skoda</option>
+            <option value="Mini" selected="@(selectedMake == "Mini")">Mini</option>
+            <option value="Tesla" selected="@(selectedMake == "Tesla")">Tesla</option>
+            <option value="Porsche" selected="@(selectedMake == "Porsche")">Porsche</option>
+            <option value="Lexus" selected="@(selectedMake == "Lexus")">Lexus</option>
+        </select>
+    </div>
+
+    <div class="col-md-2">
+        <label class="form-label fw-bold" style="font-size: 14px;">Град</label>
+        @{
+            var selectedCity = Context.Request.Query["searchCity"].ToString();
+        }
+        <select name="searchCity" class="form-select">
+            <option value="">Всички</option>
+            <option value="София" selected="@(selectedCity == "София")">София</option>
+            <option value="Пловдив" selected="@(selectedCity == "Пловдив")">Пловдив</option>
+            <option value="Варна" selected="@(selectedCity == "Варна")">Варна</option>
+            <option value="Бургас" selected="@(selectedCity == "Бургас")">Бургас</option>
+            <option value="Благоевград" selected="@(selectedCity == "Благоевград")">Благоевград</option>
+            <option value="Велико Търново" selected="@(selectedCity == "Велико Търново")">В. Търново</option>
+            <option value="Видин" selected="@(selectedCity == "Видин")">Видин</option>
+            <option value="Враца" selected="@(selectedCity == "Враца")">Враца</option>
+            <option value="Габрово" selected="@(selectedCity == "Габрово")">Габрово</option>
+            <option value="Добрич" selected="@(selectedCity == "Добрич")">Добрич</option>
+            <option value="Кърджали" selected="@(selectedCity == "Кърджали")">Кърджали</option>
+            <option value="Кюстендил" selected="@(selectedCity == "Кюстендил")">Кюстендил</option>
+            <option value="Ловеч" selected="@(selectedCity == "Ловеч")">Ловеч</option>
+            <option value="Монтана" selected="@(selectedCity == "Монтана")">Монтана</option>
+            <option value="Пазарджик" selected="@(selectedCity == "Пазарджик")">Пазарджик</option>
+            <option value="Перник" selected="@(selectedCity == "Перник")">Перник</option>
+            <option value="Плевен" selected="@(selectedCity == "Плевен")">Плевен</option>
+            <option value="Разград" selected="@(selectedCity == "Разград")">Разград</option>
+            <option value="Русе" selected="@(selectedCity == "Русе")">Русе</option>
+            <option value="Силистра" selected="@(selectedCity == "Силистра")">Силистра</option>
+            <option value="Сливен" selected="@(selectedCity == "Сливен")">Сливен</option>
+            <option value="Смолян" selected="@(selectedCity == "Смолян")">Смолян</option>
+            <option value="Стара Загора" selected="@(selectedCity == "Стара Загора")">Ст. Загора</option>
+            <option value="Търговище" selected="@(selectedCity == "Търговище")">Търговище</option>
+            <option value="Хасково" selected="@(selectedCity == "Хасково")">Хасково</option>
+            <option value="Шумен" selected="@(selectedCity == "Шумен")">Шумен</option>
+            <option value="Ямбол" selected="@(selectedCity == "Ямбол")">Ямбол</option>
+            <option value="Дупница" selected="@(selectedCity == "Дупница")">Дупница</option>
+            <option value="Казанлък" selected="@(selectedCity == "Казанлък")">Казанлък</option>
+            <option value="Асеновград" selected="@(selectedCity == "Асеновград")">Асеновград</option>
+        </select>
+    </div>
+
+    <div class="col-md-2 position-relative">
+        <label class="form-label fw-bold" style="font-size: 14px;">Година (след)</label>
+        <button class="btn btn-outline-secondary dropdown-toggle w-100 text-start bg-white" type="button"
+                onclick="toggleMenu('menuYear', event)" style="height: 45px; border-color: #ced4da; color: #495057;">
+            <span id="yearBtnLabel">@(string.IsNullOrEmpty(Context.Request.Query["minYear"]) ? "Избери..." : Context.Request.Query["minYear"] + " г.")</span>
+        </button>
+        <div id="menuYear" class="dropdown-menu p-3 shadow" style="width: 250px; position: absolute; top: 100%; left: 0; z-index: 1000;" onclick="event.stopPropagation()">
+            <label class="form-label fw-bold mb-3">От: <span id="yearLabel" style="color: #0d6efd;">@(string.IsNullOrEmpty(Context.Request.Query["minYear"]) ? "1970" : Context.Request.Query["minYear"])</span></label>
+            <input type="range" name="minYear" class="form-range" min="1970" max="2026" step="1"
+                   value="@(string.IsNullOrEmpty(Context.Request.Query["minYear"]) ? "1970" : Context.Request.Query["minYear"])"
+                   oninput="document.getElementById('yearLabel').innerText = this.value; document.getElementById('yearBtnLabel').innerText = this.value + ' г.';" />
+        </div>
+    </div>
+
+    <div class="col-md-3 position-relative">
+        <label class="form-label fw-bold" style="font-size: 14px;">Макс. цена (лв)</label>
+        <button class="btn btn-outline-secondary dropdown-toggle w-100 text-start bg-white" type="button"
+                onclick="toggleMenu('menuPrice', event)" style="height: 45px; border-color: #ced4da; color: #495057;">
+            <span id="priceBtnLabel">@(string.IsNullOrEmpty(Context.Request.Query["maxPrice"]) ? "Избери..." : Context.Request.Query["maxPrice"] + " лв.")</span>
+        </button>
+        <div id="menuPrice" class="dropdown-menu p-3 shadow" style="width: 280px; position: absolute; top: 100%; left: 0; z-index: 1000;" onclick="event.stopPropagation()">
+            <label class="form-label fw-bold mb-3">До: <span id="priceLabel" style="color: #0d6efd;">@(string.IsNullOrEmpty(Context.Request.Query["maxPrice"]) ? "20000000" : Context.Request.Query["maxPrice"])</span> лв.</label>
+            <input type="range" name="maxPrice" class="form-range" min="1000" max="20000000" step="1000"
+                   value="@(string.IsNullOrEmpty(Context.Request.Query["maxPrice"]) ? "20000000" : Context.Request.Query["maxPrice"])"
+                   oninput="document.getElementById('priceLabel').innerText = this.value; document.getElementById('priceBtnLabel').innerText = this.value + ' лв.';" />
+        </div>
+    </div>
+
+    <div class="col-md-3 d-flex gap-2">
+        <button type="submit" class="btn btn-primary w-100 fw-bold" style="background-color: #0d6efd;">Търси</button>
+        <a href="/Home/Index" class="btn btn-outline-secondary w-50 fw-bold">Изчисти</a>
+    </div>
+
+</form>
+<script>
+    function toggleMenu(menuId, event) {
+        // Спираме клика, за да не затвори веднага менюто
+        event.stopPropagation();
+
+        // Първо скриваме всички отворени менюта (ако има такива)
+        document.querySelectorAll('.custom-dropdown').forEach(el => el.classList.remove('d-block'));
+
+        // Показваме менюто, върху което сме кликнали
+        let menu = document.getElementById(menuId);
+        menu.classList.toggle('d-block');
+        menu.classList.add('custom-dropdown');
+    }
+
+    // Ако кликнем някъде в празното пространство на сайта, затваряме менютата
+    document.addEventListener('click', function() {
+        document.querySelectorAll('.custom-dropdown').forEach(el => el.classList.remove('d-block'));
+    });
+</script>
+<div class="mb-4 d-flex align-items-center justify-content-between">
+    <h5 style="font-weight: 600; color: #3c4043; margin: 0;">
+        Намерени резултати: <span class="badge bg-primary rounded-pill">@Model.Count</span>
+    </h5>
+
+    <!-- ПАДАЩО МЕНЮ ЗА СОРТИРАНЕ -->
+    <div class="d-flex align-items-center">
+        <span class="me-2 text-muted" style="font-size: 14px; font-weight: 600; white-space: nowrap;">Сортирай по:</span>
+        <!-- Забележи form="searchForm" и onchange="..." -->
+        <select name="sortOrder" form="searchForm" class="form-select form-select-sm fw-bold shadow-sm" style="border-radius: 6px; cursor: pointer; width: 200px;" onchange="document.getElementById('searchForm').submit()">
+            <option value="newest" selected="@(ViewBag.CurrentSort == "newest" || string.IsNullOrEmpty(ViewBag.CurrentSort) ? "selected" : null)">Най-нови обяви</option>
+            <option value="price_desc" selected="@(ViewBag.CurrentSort == "price_desc" ? "selected" : null)">Цена - най-висока</option>
+            <option value="price_asc" selected="@(ViewBag.CurrentSort == "price_asc" ? "selected" : null)">Цена - най-ниска</option>
+            <option value="year_desc" selected="@(ViewBag.CurrentSort == "year_desc" ? "selected" : null)">Година - най-нова</option>
+            <option value="year_asc" selected="@(ViewBag.CurrentSort == "year_asc" ? "selected" : null)">Година - най-стара</option>
+        </select>
+    </div>
+</div>
+<div class="row">
+    @foreach (var car in Model)
+    {
+        // 1. Изчисляваме дали е любима (засега остава false, докато не я свържем с бекенда утре)
+        var myFavorites = ViewBag.Favorites as List<int> ?? new List<int>();
+        var isFavorite = myFavorites.Contains(car.Id);
+       
+        <div class="col-md-4 mb-4">
+            <div class="car-card position-relative">
+                <div class="position-absolute top-0 start-0 m-2" style="z-index: 10;">
+                    <input type="checkbox" name="selectedIds" value="@car.Id" form="compareForm" style="width: 22px; height: 22px; cursor: pointer;" title="Избери за сравнение" />
+                </div>
+                @{
+                    var firstImage = car.ImageUrl != null ? car.ImageUrl.Split('|')[0] : "/images/no-image.jpg";
+                }
+                <img src="@firstImage" style="width: 100%; height: 220px; object-fit: cover;" alt="@car.Make @car.Model" />
+                <div class="p-4 d-flex flex-column flex-grow-1">
+                    <h5 style="font-weight: 700; color: #202124;">@car.Make @car.Model</h5>
+                    <p style="color: #70757a; font-size: 14px; margin-bottom: 15px;">@car.Year г.</p>
+
+                    <p style="color: #5f6368; font-size: 14px; margin-top: -10px;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-geo-alt-fill text-danger" viewBox="0 0 16 16">
+                            <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10m0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6" />
+                        </svg>
+                        @car.City
+                    </p>
+
+                    <h4 style="color: #2b5fe7; font-weight: 800; margin-bottom: 25px;">@car.Price.ToString("N0") лв.</h4>
+
+                    <div class="mt-auto d-flex justify-content-between align-items-center">
+                        <div class="d-flex gap-1">
+                            <a href="/Home/Details/@car.Id" class="btn btn-outline-primary btn-sm px-3 py-2 fw-bold">Детайли</a>
+
+                            @if (Project_AutoHouse.Controllers.HomeController.IsLoggedIn)
+                            {
+                                <a href="/Home/AddToFavorites/@car.Id"
+                                   class="btn @(isFavorite ? "btn-danger" : "btn-outline-danger") btn-sm px-3 py-2 ms-1"
+                                   title="@(isFavorite ? "Премахни от любими" : "Добави в любими")">
+
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-heart-fill" viewBox="0 0 16 16">
+                                        <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z" />
+                                    </svg>
+                                </a>
+                            }
+                        </div>
+
+                        @if (Project_AutoHouse.Controllers.HomeController.CurrentUserEmail == car.OwnerEmail ||
+                                            Project_AutoHouse.Controllers.HomeController.CurrentUserEmail == Project_AutoHouse.Controllers.HomeController.AdminEmail)
+                        {
+                            <form method="post" action="/Home/Delete/@car.Id" onsubmit="confirmDelete(event, this);">
+                                <button type="submit" class="btn btn-danger btn-sm">
+                                    Изтрий
+                                </button>
+                            </form>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>
